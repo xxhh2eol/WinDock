@@ -19,10 +19,16 @@ jobs:
           dotnet-version: '8.0.x'
 
       # 发布自包含版本（无需目标机器安装 .NET）
-      # 注意：不要用 PowerShell 反引号续行（CRLF 检出会破坏续行），保持单行
+      # 注意：csproj 相对仓库根为 WinDock/WinDock/WinDock.csproj（两层 WinDock）
       - name: Publish (self-contained win-x64)
         shell: pwsh
-        run: dotnet publish "WinDock/WinDock/WinDock/WinDock.csproj" -c Release -r win-x64 --self-contained true -p:DebugType=None -p:DebugSymbols=false -o publish
+        run: dotnet publish "WinDock/WinDock/WinDock.csproj" -c Release -r win-x64 --self-contained true -p:DebugType=None -p:DebugSymbols=false -o publish
+
+      - name: Verify publish output
+        shell: pwsh
+        run: |
+          if (-not (Test-Path "publish/WinDock.exe")) { Write-Error "publish/WinDock.exe not found"; exit 1 }
+          Write-Host "publish output OK: $((Get-ChildItem publish -File | Measure-Object).Count) files"
 
       - name: Install Inno Setup
         shell: pwsh
