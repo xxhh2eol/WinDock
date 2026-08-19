@@ -1,0 +1,17 @@
+# Build results
+bin/
+obj/
+*.user
+*.suo
+
+# Publish & installer output
+publish/
+installer-output/
+
+# Visual Studio
+.vs/
+*.userprefs
+
+# Test artifacts
+*.log
+*.png

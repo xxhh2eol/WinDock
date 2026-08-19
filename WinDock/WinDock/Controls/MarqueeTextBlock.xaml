@@ -1,0 +1,19 @@
+<UserControl x:Class="WinDock.Controls.MarqueeTextBlock"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="18" Focusable="False">
+    <Grid ClipToBounds="True">
+        <ScrollViewer x:Name="Scroller"
+                      HorizontalScrollBarVisibility="Hidden"
+                      VerticalScrollBarVisibility="Hidden"
+                      HorizontalContentAlignment="Center"
+                      VerticalContentAlignment="Center"
+                      Background="Transparent"
+                      Focusable="False">
+            <TextBlock x:Name="NoteText"
+                       TextWrapping="NoWrap"
+                       TextTrimming="None"
+                       TextAlignment="Center" />
+        </ScrollViewer>
+    </Grid>
+</UserControl>
